@@ -11,12 +11,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
     <script src="todo.js"></script> 
 </head>
-<body>
+<body >
 
 
-<h2 style="align:center">Samhitha Todo List</h2>
+<h1 align="center"><img src="todo.jpg" alt="Trulli"  style="width:60px;height:60px;" align="middle">           SAMHITHA TO-DO LIST</h1>
 
-<form ng-submit="submitNewItem()">
+<p align="center">Check the box beside the task to mark it as complete <img src="smiley.jpg" alt="Smiley face" width="40" height="40"> </p>
+
+<form ng-submit="submitNewItem()" align="center">
     <input type="text" ng-model="todoInput"  placeholder="Enter the description of the task" size="60">
     <input type="submit" value="Add New Task">
 </form>
@@ -24,21 +26,38 @@
 <br>
 <br>
 
-<div ng-repeat="x in items">
-    <input type="checkbox" ng-model="x.done" ng-click="completeItem($index, items, completed)"> <span ng-bind="x.todoText"></span> <input type="checkbox" ng-click="deleteItem()" ng-model="x.remove" > Check this to remove item
-</div>
+<table ng-repeat="x in items" align="center" border="0.5">
+    <tr>
+        <td width="5%" style="background-color:#1EB2B1">
+            <p>{{$index+1}}</p>
+        </td>
+       <td width="50%" style="background-color: #1EB2B1">
+            <input type="checkbox" ng-model="x.done" ng-click="completeItem($index, items, completed)"> <span ng-bind="x.todoText"></span>
+        </td>
+        <td width="50%" style="background-color: #1EB2B1">
+            <input type="checkbox" ng-click="deleteItem()" ng-model="x.remove" > Check this to remove this item
+        </td>
 
-<div ng-show="completed.length">
-            <h3>Completed ({{ completed.length }})</h3>
-              <div ng-repeat="task in completed">
-                <input type="checkbox" ng-click="completeItem($index, completed, items)" checked /> <strike>{{ task.todoText }} </strike> </br>
-              </div>
+
+    </tr>
+</table>
+
+<div ng-show="completed.length" align="center">
+     <h3>Completed ({{ completed.length }})</h3>
+
+              <table ng-repeat="task in completed" border="0.5" width="420px">
+                <tr>
+                    <td style="background-color:orchid" width="5%">
+                      {{$index+1}}
+                    </td >
+                    <td style="background-color:orchid" width="95%">
+                        <input type="checkbox" ng-click="completeItem($index, completed, items)" checked />
+                       {{ task.todoText }}
+                    </td>
+                </tr>
+              </table>
+
+
           </div>
-
-
-
-
-
-
 </body>
 </html>
